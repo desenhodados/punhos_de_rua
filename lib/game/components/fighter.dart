@@ -5,6 +5,8 @@ import 'package:flame/components.dart';
 import '../game_enums.dart';
 import '../punhos_game.dart';
 import 'fighter_painter.dart';
+import 'sprite_data.dart';
+import 'sprite_painter.dart';
 
 /// Base de qualquer lutador. A posição é o ponto dos pés; [z] é a altura.
 abstract class Fighter extends PositionComponent with HasGameReference<PunhosGame> {
@@ -26,6 +28,12 @@ abstract class Fighter extends PositionComponent with HasGameReference<PunhosGam
   bool _moving = false;
 
   Weapon? get visibleWeapon => null;
+
+  /// Folha de sprites em pixel art; sem ela usa-se o desenho vetorial.
+  SpriteSheetData? get sheet => null;
+
+  /// Escala extra da sprite (ex.: chefes maiores).
+  double get spriteScale => 1;
   bool get hidden => false;
 
   @override
@@ -40,6 +48,24 @@ abstract class Fighter extends PositionComponent with HasGameReference<PunhosGam
   @override
   void render(Canvas canvas) {
     if (hidden) return;
+    final s = sheet;
+    if (s != null && game.images.containsKey(s.file)) {
+      SpritePainter.paint(
+        canvas,
+        image: game.images.fromCache(s.file),
+        sheet: s,
+        facing: facing,
+        phase: walkPhase,
+        pose: pose,
+        moving: _moving,
+        time: game.frame / 60,
+        height: z,
+        scale: spriteScale,
+        flash: flashTimer > 0,
+        weapon: visibleWeapon,
+      );
+      return;
+    }
     FighterPainter.paint(
       canvas,
       palette: palette,

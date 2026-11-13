@@ -8,7 +8,7 @@ import '../game/punhos_game.dart';
 const _gold = Color(0xFFFFD966);
 const _mono = 'monospace';
 
-/// Ecrã inicial: escolher entre o Jack e a Clara.
+/// Ecrã inicial: escolher o lutador.
 class TitleOverlay extends StatelessWidget {
   const TitleOverlay({super.key, required this.game});
   final PunhosGame game;
@@ -51,8 +51,8 @@ class _HeroCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 140,
-        margin: const EdgeInsets.symmetric(horizontal: 10),
+        width: 120,
+        margin: const EdgeInsets.symmetric(horizontal: 6),
         decoration: BoxDecoration(
           border: Border.all(color: _gold, width: 2),
           borderRadius: BorderRadius.circular(8),
@@ -62,7 +62,24 @@ class _HeroCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: 150, width: 140, child: Image.asset(hero.image, fit: BoxFit.cover, alignment: Alignment(hero.imageFocusX, 0), filterQuality: FilterQuality.none)),
+            SizedBox(
+              height: 150,
+              width: 120,
+              child: switch (hero.portrait) {
+                null => Image.asset(hero.image, fit: BoxFit.cover, alignment: Alignment(hero.imageFocusX, 0), filterQuality: FilterQuality.none),
+                final String p => Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset(hero.image, fit: BoxFit.cover, alignment: Alignment(hero.imageFocusX, 0), filterQuality: FilterQuality.none),
+                      const ColoredBox(color: Color(0x99000000)),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 14, bottom: 6),
+                        child: Image.asset(p, fit: BoxFit.contain, alignment: Alignment.bottomCenter, filterQuality: FilterQuality.none),
+                      ),
+                    ],
+                  ),
+              },
+            ),
             Container(
               width: double.infinity,
               color: const Color(0xEE120C18),

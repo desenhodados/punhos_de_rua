@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'fighter.dart';
 import 'fighter_painter.dart';
+import 'sprite_data.dart';
 import '../game_enums.dart';
 
 enum EnemyKind { grunt, thug, knifer, boss, viper }
@@ -32,6 +33,14 @@ extension EnemyKindStats on EnemyKind {
         _ => 1,
       };
   Weapon? get weapon => this == EnemyKind.knifer ? Weapon.knife : null;
+
+  /// Sprites em pixel art: punks e o chefão. Os restantes usam o desenho vetorial.
+  SpriteSheetData? get sheet => switch (this) {
+        EnemyKind.thug => SpriteSheets.punkRed,
+        EnemyKind.viper => SpriteSheets.punkGreen,
+        EnemyKind.boss => SpriteSheets.bigtyk,
+        _ => null,
+      };
 
   FighterPalette get palette => switch (this) {
         EnemyKind.grunt => Palettes.grunt,
@@ -64,6 +73,12 @@ class Enemy extends Fighter {
 
   @override
   Weapon? get visibleWeapon => kind.weapon;
+
+  @override
+  SpriteSheetData? get sheet => kind.sheet;
+
+  @override
+  double get spriteScale => kind == EnemyKind.viper ? 1.2 : 1;
 
   @override
   void update(double dt) {

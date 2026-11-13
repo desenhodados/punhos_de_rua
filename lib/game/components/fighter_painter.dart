@@ -86,6 +86,28 @@ abstract final class FighterPainter {
     }
   }
 
+  /// Sombra suave no chão (encolhe quando o lutador salta).
+  static void drawShadow(Canvas c, double scale, double height) {
+    final shadowR = 13 * scale * (1 - math.min(height, 60) / 120);
+    c.save();
+    c.scale(1, .28);
+    _fill.shader = Gradient.radial(Offset.zero, shadowR, const [Color(0x99000000), Color(0x00000000)]);
+    c.drawCircle(Offset.zero, shadowR, _fill);
+    _fill.shader = null;
+    c.restore();
+  }
+
+  /// Taco ou faca na mão em ([hx], [hy]).
+  static void drawWeapon(Canvas c, Weapon weapon, double hx, double hy) {
+    if (weapon == Weapon.knife) {
+      _limb(c, [Offset(hx + 1, hy + 1), Offset(hx + 10, hy - 5)], 2.4, const Color(0xFFD8DDE8));
+      _limb(c, [Offset(hx - 1, hy + 2), Offset(hx + 2, hy)], 3.4, const Color(0xFF2A2A33), shine: false);
+    } else {
+      _limb(c, [Offset(hx - 1, hy + 3), Offset(hx + 8, hy - 15)], 3.6, const Color(0xFFA8743A));
+      _limb(c, [Offset(hx - 1, hy + 3), Offset(hx + 1.2, hy - 1.5)], 3.7, const Color(0xFF222222), shine: false);
+    }
+  }
+
   static void paint(
     Canvas c, {
     required FighterPalette palette,
@@ -101,14 +123,7 @@ abstract final class FighterPainter {
   }) {
     final p = palette;
 
-    // sombra suave
-    final shadowR = 13 * scale * (1 - math.min(height, 60) / 120);
-    c.save();
-    c.scale(1, .28);
-    _fill.shader = Gradient.radial(Offset.zero, shadowR, const [Color(0x99000000), Color(0x00000000)]);
-    c.drawCircle(Offset.zero, shadowR, _fill);
-    _fill.shader = null;
-    c.restore();
+    drawShadow(c, scale, height);
 
     if (flash) {
       c.saveLayer(null, Paint()..colorFilter = const ColorFilter.mode(Color(0xB3FFFFFF), BlendMode.srcATop));
@@ -466,13 +481,7 @@ abstract final class FighterPainter {
       _fill.color = p.bareArms ? p.skin : p.shirt;
       c.drawCircle(const Offset(1, -28.5), shoulder, _fill);
       c.drawCircle(const Offset(1, -28.5), shoulder, _stroke..strokeWidth = 1..color = _ol);
-      if (weapon == Weapon.knife) {
-        _limb(c, [Offset(hx + 1, hy + 1), Offset(hx + 10, hy - 5)], 2.4, const Color(0xFFD8DDE8));
-        _limb(c, [Offset(hx - 1, hy + 2), Offset(hx + 2, hy)], 3.4, const Color(0xFF2A2A33), shine: false);
-      } else if (weapon == Weapon.bat) {
-        _limb(c, [Offset(hx - 1, hy + 3), Offset(hx + 8, hy - 15)], 3.6, const Color(0xFFA8743A));
-        _limb(c, [Offset(hx - 1, hy + 3), Offset(hx + 1.2, hy - 1.5)], 3.7, const Color(0xFF222222), shine: false);
-      }
+      if (weapon != null) drawWeapon(c, weapon, hx, hy);
     });
 
     c.restore();

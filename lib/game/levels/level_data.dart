@@ -110,7 +110,7 @@ abstract final class Levels {
       waves: [[_k, _g, _k], [_t, _k, _k, _g], [_k, _t, _k, _t, _g], [_b, _k, _t]],
       pickups: [PickupSpawn(Weapon.knife, 380, 150), PickupSpawn(Weapon.bat, 760, 140)],
       storyPages: [
-        ['A Víbora confessa: o chefe', 'é o Touro, rei dos motoqueiros.', 'A Lena está presa numa', 'lanchonete na Rota 66.', '', 'NÍVEL 4: A LANCHONETE'],
+        ['A Víbora confessa: o chefe', 'é o Big Tyk, rei dos motoqueiros.', 'A Lena está presa numa', 'lanchonete na Rota 66.', '', 'NÍVEL 4: A LANCHONETE'],
       ],
     ),
   ];
@@ -118,7 +118,7 @@ abstract final class Levels {
   static List<String> endingLines(int score, String hero) => [
         'VITÓRIA!',
         '',
-        'O Touro cai no asfalto e a',
+        'O Big Tyk cai no asfalto e a',
         'Lena está livre. “Sabia que',
         'vinhas, $hero.”',
         '',

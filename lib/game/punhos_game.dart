@@ -11,6 +11,7 @@ import 'components/hud.dart';
 import 'components/pickup.dart';
 import 'components/player.dart';
 import 'components/sparks.dart';
+import 'components/sprite_data.dart';
 import 'game_enums.dart';
 import 'input_state.dart';
 import 'levels/level_data.dart';
@@ -48,6 +49,7 @@ class PunhosGame extends FlameGame {
 
   @override
   Future<void> onLoad() async {
+    await images.loadAll([for (final s in SpriteSheets.all) s.file]);
     await add(root);
     root.add(Background());
     root.add(stage);
