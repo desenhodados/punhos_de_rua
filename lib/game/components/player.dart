@@ -9,9 +9,47 @@ import 'enemy.dart';
 import 'fighter.dart';
 import 'fighter_painter.dart';
 
+extension PlayerHeroInfo on PlayerHero {
+  String get displayName => switch (this) {
+        PlayerHero.jack => 'JACK',
+        PlayerHero.rita => 'RITA',
+      };
+
+  String get name => switch (this) {
+        PlayerHero.jack => 'Jack',
+        PlayerHero.rita => 'Rita',
+      };
+
+  String get tagline => switch (this) {
+        PlayerHero.jack => 'Lutador de Nova Iorque',
+        PlayerHero.rita => 'Heroína de ação europeia',
+      };
+
+  FighterPalette get palette => switch (this) {
+        PlayerHero.jack => Palettes.jack,
+        PlayerHero.rita => Palettes.rita,
+      };
+
+  /// Posição horizontal do lutador na ilustração (-1 esquerda, 1 direita).
+  double get imageFocusX => this == PlayerHero.jack ? .3 : 0;
+
+  /// Ilustração do lutador (ver assets/images).
+  String get image => switch (this) {
+        PlayerHero.jack => 'assets/images/nova_iorque.png',
+        PlayerHero.rita => 'assets/images/europa_noite.png',
+      };
+}
+
 class Player extends Fighter {
-  Player() : super(maxHp: 12, palette: Palettes.hero) {
+  Player() : super(maxHp: 12, palette: Palettes.jack) {
     position = Vector2(50, 140);
+  }
+
+  PlayerHero hero = PlayerHero.jack;
+
+  void chooseHero(PlayerHero h) {
+    hero = h;
+    palette = h.palette;
   }
 
   int lives = 3;

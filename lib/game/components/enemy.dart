@@ -26,7 +26,11 @@ extension EnemyKindStats on EnemyKind {
       };
 
   int get damage => (this == EnemyKind.grunt || this == EnemyKind.thug) ? 1 : 2;
-  double get scale => isBoss ? 1.35 : 1;
+  double get scale => switch (this) {
+        EnemyKind.boss => 1.5,
+        EnemyKind.viper => 1.35,
+        _ => 1,
+      };
   Weapon? get weapon => this == EnemyKind.knifer ? Weapon.knife : null;
 
   FighterPalette get palette => switch (this) {

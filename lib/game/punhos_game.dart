@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flame/components.dart';
-import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
 
 import '../core/game_config.dart';
@@ -69,15 +68,26 @@ class PunhosGame extends FlameGame {
 
   // ---- Fluxo do jogo ----
 
-  void startGame() {
+  /// Começa um jogo novo; sem [hero] repete o lutador anterior.
+  void startGame([PlayerHero? hero]) {
     overlays
       ..remove('title')
       ..remove('gameOver')
       ..remove('ending');
+    if (hero != null) player.chooseHero(hero);
     player.resetForNewGame();
     _loadLevel(0);
     phase = GamePhase.story;
     overlays.add('story');
+  }
+
+  void backToTitle() {
+    overlays
+      ..remove('gameOver')
+      ..remove('ending')
+      ..add('title');
+    phase = GamePhase.title;
+    _loadLevel(0);
   }
 
   void beginPlay() {

@@ -12,7 +12,7 @@ abstract class Fighter extends PositionComponent with HasGameReference<PunhosGam
 
   final int maxHp;
   int hp;
-  final FighterPalette palette;
+  FighterPalette palette;
   final double bodyScale;
 
   int facing = 1;

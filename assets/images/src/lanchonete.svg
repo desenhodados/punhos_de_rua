@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <!-- Chefão motoqueiro americano: Touro, em frente a uma lanchonete retro dos EUA ao entardecer -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1250"/>
+      <stop offset=".5" stop-color="#c2456a"/>
+      <stop offset="1" stop-color="#ffb35a"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f6fa"/>
+      <stop offset=".45" stop-color="#9aa4b4"/>
+      <stop offset=".55" stop-color="#5a6274"/>
+      <stop offset="1" stop-color="#c8d0dc"/>
+    </linearGradient>
+    <linearGradient id="lot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a3a4a"/>
+      <stop offset="1" stop-color="#1a1218"/>
+    </linearGradient>
+    <linearGradient id="leather" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b3542"/>
+      <stop offset=".45" stop-color="#1d1a22"/>
+      <stop offset="1" stop-color="#0d0b10"/>
+    </linearGradient>
+    <linearGradient id="jeans" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#26324a"/>
+      <stop offset=".5" stop-color="#3c4c6c"/>
+      <stop offset="1" stop-color="#1e283c"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b06a44"/>
+      <stop offset=".5" stop-color="#d08a5e"/>
+      <stop offset="1" stop-color="#9a5a3a"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <rect width="960" height="540" fill="url(#sky)"/>
+  <circle cx="160" cy="300" r="70" fill="#ffd27a" opacity=".55"/>
+  <!-- mesas/colinas do deserto -->
+  <path d="M0 300 L80 270 L140 280 L200 250 L300 290 L420 260 L520 300 L640 270 L760 290 L880 250 L960 270 V320 H0 Z" fill="#6a2a4a"/>
+  <!-- palmeiras -->
+  <g fill="#1a0c22" stroke="#1a0c22">
+    <path d="M60 330 Q66 250 74 190" stroke-width="7" fill="none"/>
+    <path d="M74 190 Q40 180 20 200 Q50 186 74 194 Q60 170 34 160 Q66 166 76 190 Q90 160 120 158 Q94 172 78 192 Q110 186 130 204 Q100 192 76 196 Z"/>
+    <path d="M900 330 Q894 260 884 200" stroke-width="7" fill="none"/>
+    <path d="M884 200 Q850 190 830 210 Q860 196 884 204 Q870 180 844 170 Q876 176 886 200 Q900 170 930 168 Q904 182 888 202 Q920 196 940 214 Q910 202 886 206 Z"/>
+  </g>
+
+  <!-- lanchonete: corpo de inox curvado -->
+  <g stroke="#120c18" stroke-width="4" stroke-linejoin="round">
+    <path d="M150 400 V250 Q150 210 200 210 H760 Q810 210 810 250 V400 Z" fill="url(#chrome)"/>
+    <rect x="150" y="300" width="660" height="14" fill="#2ab0b8"/>
+    <rect x="150" y="372" width="660" height="28" fill="#c8202a"/>
+    <!-- janelas iluminadas com bancos ao balcão -->
+    <rect x="186" y="236" width="588" height="60" rx="6" fill="#ffe6a8"/>
+    <path d="M254 236 V296 M322 236 V296 M390 236 V296 M570 236 V296 M638 236 V296 M706 236 V296" stroke-width="5"/>
+    <g fill="#c8202a" stroke-width="2.5"><circle cx="220" cy="284" r="8"/><circle cx="288" cy="284" r="8"/><circle cx="356" cy="284" r="8"/><circle cx="604" cy="284" r="8"/><circle cx="672" cy="284" r="8"/><circle cx="740" cy="284" r="8"/></g>
+    <!-- porta -->
+    <rect x="440" y="300" width="80" height="100" fill="#ffe6a8"/>
+    <path d="M480 300 V400" stroke-width="3"/>
+    <!-- telhado e letreiro -->
+    <rect x="300" y="30" width="360" height="64" rx="12" fill="#1a1028"/>
+    <rect x="360" y="94" width="14" height="116" fill="#5a6274"/><rect x="586" y="94" width="14" height="116" fill="#5a6274"/>
+  </g>
+  <!-- néon -->
+  <g font-family="'Brush Script MT', 'Lobster', cursive, Georgia, serif" font-style="italic" font-weight="bold" text-anchor="middle">
+    <text x="480" y="80" font-size="52" fill="#ff3d81" filter="url(#glow)">Diner</text>
+    <text x="480" y="80" font-size="52" fill="#ffd0e4">Diner</text>
+  </g>
+  <rect x="314" y="40" width="332" height="44" rx="10" fill="none" stroke="#3df0ff" stroke-width="4" filter="url(#glow)"/>
+  <rect x="314" y="40" width="332" height="44" rx="10" fill="none" stroke="#c8fbff" stroke-width="2"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="16" text-anchor="middle">
+    <text x="236" y="346" fill="#3df0ff" filter="url(#glow)">OPEN 24H</text>
+    <text x="236" y="346" fill="#e0fdff">OPEN 24H</text>
+    <text x="724" y="346" fill="#ffd966" filter="url(#glow)">BURGERS</text>
+    <text x="724" y="346" fill="#fff6c8">BURGERS</text>
+  </g>
+
+  <!-- parque de estacionamento -->
+  <rect x="0" y="400" width="960" height="140" fill="url(#lot)"/>
+  <rect x="0" y="398" width="960" height="5" fill="#9a8aa0"/>
+  <path d="M40 540 L120 420 M260 540 L300 420 M700 540 L660 420 M920 540 L840 420" stroke="#f2e6c8" stroke-width="4" opacity=".35"/>
+  <ellipse cx="480" cy="420" rx="300" ry="20" fill="#ff3d81" opacity=".25" filter="url(#blur)"/>
+
+  <!-- motas estilo chopper -->
+  <g stroke="#120c18" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <g transform="translate(60,430)">
+      <circle cx="20" cy="56" r="28" fill="#141218" stroke-width="5"/><circle cx="20" cy="56" r="10" fill="url(#chrome)"/>
+      <circle cx="180" cy="56" r="28" fill="#141218" stroke-width="5"/><circle cx="180" cy="56" r="10" fill="url(#chrome)"/>
+      <path d="M20 56 L64 30 H120 L180 56" fill="none" stroke="#c8d0dc" stroke-width="6"/>
+      <path d="M60 20 Q80 4 112 14 L118 32 H64 Z" fill="#8a1a1a"/>
+      <path d="M118 30 L150 0 L160 -10" fill="none" stroke="#c8d0dc" stroke-width="5"/>
+      <path d="M150 0 L176 54" fill="none" stroke="#c8d0dc" stroke-width="5"/>
+      <rect x="70" y="34" width="36" height="22" fill="url(#chrome)"/>
+    </g>
+    <g transform="translate(720,440)">
+      <circle cx="20" cy="50" r="26" fill="#141218" stroke-width="5"/><circle cx="20" cy="50" r="9" fill="url(#chrome)"/>
+      <circle cx="170" cy="50" r="26" fill="#141218" stroke-width="5"/><circle cx="170" cy="50" r="9" fill="url(#chrome)"/>
+      <path d="M20 50 L60 26 H112 L170 50" fill="none" stroke="#c8d0dc" stroke-width="6"/>
+      <path d="M56 18 Q76 2 106 12 L110 28 H60 Z" fill="#1a1a1a"/>
+      <path d="M110 26 L140 -2 L150 -12" fill="none" stroke="#c8d0dc" stroke-width="5"/>
+      <path d="M140 -2 L166 48" fill="none" stroke="#c8d0dc" stroke-width="5"/>
+    </g>
+  </g>
+
+  <!-- ===== TOURO (chefão motoqueiro) ===== -->
+  <ellipse cx="480" cy="516" rx="150" ry="16" fill="#000" opacity=".55"/>
+  <g stroke="#120c18" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- pernas -->
+    <path d="M410 340 L484 340 L470 430 L460 486 L410 486 L408 420 Z" fill="url(#jeans)"/>
+    <path d="M476 340 L552 340 L554 420 L552 486 L502 486 L492 430 Z" fill="url(#jeans)"/>
+    <!-- botas -->
+    <path d="M404 470 L462 470 L466 492 L476 512 L388 512 Q386 494 404 488 Z" fill="#241812"/>
+    <path d="M500 470 L558 470 L558 488 Q576 494 574 512 L486 512 L496 492 Z" fill="#241812"/>
+    <path d="M390 506 H476 M486 506 H574" stroke-width="6"/>
+    <!-- corrente da carteira -->
+    <path d="M540 350 Q560 380 534 396" stroke="#c8d0dc" stroke-width="3" fill="none" stroke-dasharray="5 3"/>
+    <!-- cinto e fivela -->
+    <rect x="404" y="330" width="152" height="18" fill="#3a2414"/>
+    <rect x="462" y="326" width="38" height="26" rx="4" fill="url(#chrome)"/>
+    <!-- tronco largo: t-shirt preta -->
+    <path d="M420 200 L540 200 L556 334 L404 334 Z" fill="#222028"/>
+    <path d="M454 200 Q480 222 506 200" fill="#c07a50"/>
+    <!-- caveira na t-shirt -->
+    <g stroke="none">
+      <path d="M466 262 Q466 240 480 240 Q494 240 494 262 Q494 272 488 274 V282 H472 V274 Q466 272 466 262 Z" fill="#e8e4ee"/>
+      <circle cx="474" cy="260" r="4" fill="#222028"/><circle cx="486" cy="260" r="4" fill="#222028"/>
+    </g>
+    <!-- colete de cabedal aberto -->
+    <path d="M420 198 L376 214 L384 340 L452 342 L456 260 Z" fill="url(#leather)"/>
+    <path d="M540 198 L584 214 L576 340 L508 342 L504 260 Z" fill="url(#leather)"/>
+    <path d="M420 198 L436 252 L456 240 M540 198 L524 252 L504 240" fill="none" stroke-width="3"/>
+    <!-- emblema no colete -->
+    <circle cx="410" cy="292" r="14" fill="#c8202a" stroke-width="2.5"/>
+    <path d="M402 290 L410 282 L418 290 L410 300 Z" fill="#ffd966" stroke-width="1.5"/>
+    <!-- braços enormes e tatuados -->
+    <path d="M380 214 Q340 222 332 270 L322 352 L366 358 L376 280 Z" fill="url(#skin)"/>
+    <path d="M580 214 Q620 222 628 270 L638 352 L594 358 L584 280 Z" fill="url(#skin)"/>
+    <path d="M384 214 Q350 214 338 240 Q350 232 378 238 Z M576 214 Q610 214 622 240 Q610 232 582 238 Z" fill="#c08a5a" opacity=".6"/>
+    <g fill="none" stroke="#1a3a6a" stroke-width="3">
+      <path d="M342 262 Q354 250 366 262 Q354 276 342 262 Z"/>
+      <path d="M338 290 L348 300 L340 312 L352 322 M356 292 L364 306"/>
+      <path d="M612 250 L604 266 H618 L610 282"/>
+      <path d="M606 300 Q620 288 632 302 Q620 318 606 300 Z M612 300 H626"/>
+    </g>
+    <path d="M338 262 Q354 270 368 258" stroke="#c8202a" stroke-width="3" fill="none"/>
+    <!-- luvas sem dedos e punhos -->
+    <path d="M320 346 Q312 386 338 394 Q368 396 370 368 L368 348 Z" fill="#1a1418"/>
+    <path d="M324 380 Q330 396 350 394 Q366 390 368 376 Z" fill="#c07a50"/>
+    <path d="M640 346 Q648 386 622 394 Q592 396 590 368 L592 348 Z" fill="#1a1418"/>
+    <path d="M636 380 Q630 396 610 394 Q594 390 592 376 Z" fill="#c07a50"/>
+    <g fill="url(#chrome)" stroke-width="2"><circle cx="330" cy="356" r="4"/><circle cx="346" cy="358" r="4"/><circle cx="362" cy="358" r="4"/><circle cx="630" cy="356" r="4"/><circle cx="614" cy="358" r="4"/><circle cx="598" cy="358" r="4"/></g>
+    <!-- pescoço grosso -->
+    <path d="M452 170 L508 170 L512 206 Q480 218 448 206 Z" fill="#b8744e"/>
+    <!-- cabeça careca -->
+    <path d="M444 134 Q442 92 480 88 Q518 92 516 134 L514 160 Q510 186 480 190 Q450 186 446 160 Z" fill="#d08a5e"/>
+    <path d="M446 136 Q432 134 434 150 Q436 162 448 162 M514 136 Q528 134 526 150 Q524 162 512 162" fill="#b8744e"/>
+    <path d="M458 100 Q470 92 486 94" stroke="#f4c8a0" stroke-width="3" fill="none"/>
+    <!-- bandana -->
+    <path d="M444 118 Q480 96 516 118 L516 128 Q480 108 444 128 Z" fill="#c8202a"/>
+    <path d="M444 122 L426 132 L432 116 Z" fill="#c8202a"/>
+    <g fill="#f4f2f8" stroke="none"><circle cx="462" cy="114" r="2"/><circle cx="480" cy="108" r="2"/><circle cx="498" cy="114" r="2"/></g>
+    <!-- óculos escuros -->
+    <path d="M450 138 H478 L476 152 Q462 158 452 150 Z M482 138 H510 L508 150 Q498 158 484 152 Z" fill="#101018"/>
+    <path d="M478 140 H482" stroke-width="3"/>
+    <path d="M456 142 L466 142" stroke="#8ad8ff" stroke-width="2"/>
+    <path d="M488 142 L498 142" stroke="#8ad8ff" stroke-width="2"/>
+    <!-- barba grande -->
+    <path d="M446 156 Q446 214 480 226 Q514 214 514 156 Q508 172 496 170 Q490 162 480 164 Q470 162 464 170 Q452 172 446 156 Z" fill="#5a3a24"/>
+    <path d="M466 178 Q480 172 494 178 Q480 186 466 178 Z" fill="#7a2a2a" stroke-width="2.5"/>
+    <path d="M462 196 L470 210 M480 200 V216 M498 196 L490 210" stroke="#3a2414" stroke-width="2" fill="none"/>
+  </g>
+  <path d="M478 150 L474 162 L486 162" stroke="#8a4a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

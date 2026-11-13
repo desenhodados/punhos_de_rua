@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <!-- Punk/brawler europeu: Spike, rua de Londres com tijolo, cabine vermelha e nevoeiro -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1a24"/>
+      <stop offset=".6" stop-color="#3e3a4e"/>
+      <stop offset="1" stop-color="#8a7a6e"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34323e"/>
+      <stop offset="1" stop-color="#121118"/>
+    </linearGradient>
+    <linearGradient id="vest" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4a6a96"/>
+      <stop offset=".5" stop-color="#2f4a72"/>
+      <stop offset="1" stop-color="#1c2e4c"/>
+    </linearGradient>
+    <pattern id="tartan" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#b0202a"/>
+      <rect x="0" y="9" width="24" height="6" fill="#1a1a22" opacity=".7"/>
+      <rect x="9" y="0" width="6" height="24" fill="#1a1a22" opacity=".7"/>
+      <rect x="0" y="11" width="24" height="2" fill="#f2d24a" opacity=".8"/>
+      <rect x="11" y="0" width="2" height="24" fill="#f2d24a" opacity=".8"/>
+    </pattern>
+    <pattern id="brick" width="40" height="20" patternUnits="userSpaceOnUse">
+      <rect width="40" height="20" fill="#6a2e26"/>
+      <path d="M0 0 H40 M0 10 H40 M20 0 V10 M0 10 V20 M40 10 V20" stroke="#3a1a16" stroke-width="2"/>
+    </pattern>
+    <radialGradient id="lamp" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#fff2c0"/>
+      <stop offset=".3" stop-color="#ffd27a" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#ffd27a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <rect width="960" height="540" fill="url(#sky)"/>
+  <!-- torre do relógio ao longe e casario -->
+  <g fill="#2a2836">
+    <rect x="700" y="60" width="50" height="260"/>
+    <path d="M694 60 L725 0 L756 60 Z"/>
+    <rect x="0" y="200" width="960" height="120"/>
+    <path d="M0 200 L40 170 L80 200 L120 160 L160 200 L260 200 L300 175 L340 200 L540 200 L580 165 L620 200 L820 200 L860 170 L900 200 L960 180 V200"/>
+  </g>
+  <circle cx="725" cy="96" r="16" fill="#f4e6b8" stroke="#2a2836" stroke-width="4"/>
+  <path d="M725 96 V86 M725 96 L732 100" stroke="#2a2836" stroke-width="2.5"/>
+
+  <!-- casas de tijolo com chaminés -->
+  <g>
+    <rect x="0" y="130" width="330" height="290" fill="url(#brick)"/>
+    <rect x="610" y="150" width="350" height="270" fill="url(#brick)"/>
+    <g fill="#3a1a16">
+      <rect x="40" y="96" width="26" height="36"/><rect x="200" y="100" width="26" height="32"/>
+      <rect x="660" y="116" width="26" height="36"/><rect x="860" y="112" width="26" height="40"/>
+    </g>
+    <rect x="0" y="126" width="330" height="8" fill="#d8d0c0"/>
+    <rect x="610" y="146" width="350" height="8" fill="#d8d0c0"/>
+    <!-- janelas de guilhotina -->
+    <g stroke="#e8e0d0" stroke-width="5">
+      <rect x="30" y="160" width="60" height="80" fill="#14121a"/>
+      <rect x="140" y="160" width="60" height="80" fill="#ffd27a"/>
+      <rect x="250" y="160" width="60" height="80" fill="#14121a"/>
+      <rect x="650" y="180" width="60" height="80" fill="#14121a"/>
+      <rect x="760" y="180" width="60" height="80" fill="#ffd27a"/>
+      <rect x="870" y="180" width="60" height="80" fill="#14121a"/>
+      <path d="M30 200 H90 M140 200 H200 M250 200 H310 M650 220 H710 M760 220 H820 M870 220 H930"/>
+    </g>
+    <!-- porta do pub e tabuleta -->
+    <rect x="130" y="300" width="80" height="120" fill="#1a3a2a" stroke="#0c0810" stroke-width="4"/>
+    <rect x="144" y="316" width="52" height="44" fill="#ffcf7a" stroke="#0c0810" stroke-width="3"/>
+    <rect x="110" y="270" width="120" height="26" fill="#1a3a2a" stroke="#d9b45a" stroke-width="3"/>
+    <text x="170" y="290" font-family="Georgia, serif" font-weight="bold" font-size="18" fill="#d9b45a" text-anchor="middle">THE CROWN</text>
+    <!-- grafiti -->
+    <text x="660" y="380" font-family="Impact, 'Arial Black', sans-serif" font-size="56" fill="#3df08a" opacity=".75" transform="rotate(-6 660 380)">OI!</text>
+    <path d="M770 330 m-28 0 a28 28 0 1 0 56 0 a28 28 0 1 0 -56 0 M752 350 L770 302 L788 350 M758 336 H782" stroke="#ff3d81" stroke-width="5" fill="none" opacity=".75"/>
+  </g>
+
+  <!-- cabine telefónica vermelha -->
+  <g transform="translate(560,250)" stroke="#120c18" stroke-width="4" stroke-linejoin="round">
+    <path d="M0 20 Q35 0 70 20 V170 H0 Z" fill="#c8202a"/>
+    <rect x="6" y="28" width="58" height="14" fill="#1a1a1a"/>
+    <text x="35" y="39" font-family="Arial, sans-serif" font-size="9" fill="#fff" text-anchor="middle" stroke="none">TELEPHONE</text>
+    <rect x="12" y="50" width="46" height="100" fill="#ffe8a0" opacity=".85"/>
+    <path d="M12 75 H58 M12 100 H58 M12 125 H58 M27 50 V150 M43 50 V150" stroke-width="3"/>
+  </g>
+
+  <!-- passeio e estrada -->
+  <rect x="0" y="420" width="960" height="120" fill="url(#road)"/>
+  <rect x="0" y="416" width="960" height="8" fill="#7a7486"/>
+  <path d="M0 500 H120 M180 500 H300 M360 500 H480 M540 500 H660 M720 500 H840 M900 500 H960" stroke="#f2e6c8" stroke-width="3" opacity=".25"/>
+
+  <!-- candeeiro -->
+  <circle cx="390" cy="230" r="70" fill="url(#lamp)"/>
+  <g fill="#14101a"><rect x="386" y="240" width="8" height="180"/><path d="M374 220 H406 L400 244 H380 Z"/></g>
+  <rect x="382" y="224" width="16" height="16" fill="#ffe8a8"/>
+
+  <!-- nevoeiro -->
+  <g fill="#c8c0d0" opacity=".16" filter="url(#blur)">
+    <ellipse cx="200" cy="400" rx="260" ry="30"/>
+    <ellipse cx="760" cy="410" rx="280" ry="30"/>
+  </g>
+
+  <!-- ===== SPIKE (punk) ===== -->
+  <g transform="translate(-60,0)">
+  <ellipse cx="480" cy="514" rx="110" ry="14" fill="#000" opacity=".5"/>
+  <g stroke="#120c18" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- calças escocesas -->
+    <path d="M432 330 L484 330 L470 420 L452 470 L418 470 L422 410 Z" fill="url(#tartan)"/>
+    <path d="M478 330 L532 330 L544 410 L548 470 L514 470 L498 420 Z" fill="url(#tartan)"/>
+    <path d="M444 360 L520 380" stroke="#1a1a22" stroke-width="4" fill="none"/>
+    <!-- botas militares -->
+    <path d="M414 450 L456 450 L458 490 L466 508 L398 508 Q394 490 414 486 Z" fill="#1a1418"/>
+    <path d="M510 450 L552 450 L552 486 Q572 490 568 508 L502 508 L508 490 Z" fill="#1a1418"/>
+    <path d="M400 502 H466 M502 502 H568" stroke="#e8c84a" stroke-width="3"/>
+    <path d="M420 462 H452 M420 474 H452 M514 462 H546 M514 474 H546" stroke="#6a5a5a" stroke-width="2"/>
+    <!-- cinto com tachas -->
+    <rect x="430" y="322" width="104" height="16" fill="#111"/>
+    <g fill="#d8d8e0" stroke="none"><circle cx="440" cy="330" r="3"/><circle cx="452" cy="330" r="3"/><circle cx="464" cy="330" r="3"/><circle cx="500" cy="330" r="3"/><circle cx="512" cy="330" r="3"/><circle cx="524" cy="330" r="3"/></g>
+    <!-- peito nu / t-shirt rasgada -->
+    <path d="M446 206 L514 206 L520 324 L442 324 Z" fill="#f4f2f8"/>
+    <path d="M460 280 L470 296 L476 282 M490 300 L500 312" stroke-width="2.5" fill="none"/>
+    <path d="M462 206 Q480 226 498 206" fill="#e0b090"/>
+    <text x="480" y="262" font-family="Impact, 'Arial Black', sans-serif" font-size="22" fill="#c8202a" text-anchor="middle" stroke="none">RIOT</text>
+    <!-- colete de ganga sem mangas -->
+    <path d="M446 202 L410 212 L404 260 L414 328 L452 330 L462 260 Z" fill="url(#vest)"/>
+    <path d="M514 202 L550 212 L556 260 L546 328 L508 330 L498 260 Z" fill="url(#vest)"/>
+    <path d="M410 212 L404 260 M550 212 L556 260" stroke="#d9e4f2" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+    <!-- tachas nos ombros e emblemas -->
+    <g fill="#e0e0ea" stroke-width="1.5">
+      <path d="M414 208 L418 198 L422 208 Z"/><path d="M426 206 L430 196 L434 206 Z"/><path d="M438 204 L442 194 L446 204 Z"/>
+      <path d="M514 204 L518 194 L522 204 Z"/><path d="M526 206 L530 196 L534 206 Z"/><path d="M538 208 L542 198 L546 208 Z"/>
+    </g>
+    <circle cx="430" cy="280" r="14" fill="#f2d24a"/>
+    <path d="M422 284 L430 270 L438 284 M425 279 H435" stroke-width="2.5" fill="none"/>
+    <rect x="512" y="266" width="30" height="22" fill="#c8202a" stroke-width="2.5"/>
+    <path d="M516 270 L538 284 M538 270 L516 284" stroke="#f4f2f8" stroke-width="3"/>
+    <!-- alfinete -->
+    <path d="M524 236 L538 244" stroke="#d8d8e0" stroke-width="2.5"/>
+    <!-- braços nus tatuados -->
+    <path d="M410 214 Q384 222 380 262 L370 332 L402 336 L408 270 Z" fill="#e0b090"/>
+    <path d="M550 214 Q576 222 580 262 L590 332 L558 336 L552 270 Z" fill="#e0b090"/>
+    <g stroke="#2a4a7a" stroke-width="2.5" fill="none">
+      <path d="M386 250 L398 244 L394 258 Z M384 284 Q392 274 400 284 Q392 296 384 284 Z"/>
+      <path d="M564 250 Q572 240 580 252 M566 280 L576 270 L578 288 Z"/>
+    </g>
+    <!-- pulseiras com picos -->
+    <rect x="368" y="314" width="36" height="14" fill="#111"/>
+    <rect x="556" y="314" width="36" height="14" fill="#111"/>
+    <!-- punhos -->
+    <path d="M368 328 Q362 360 382 366 Q404 368 404 346 L404 328 Z" fill="#e0b090"/>
+    <path d="M372 342 H402 M374 354 H402" stroke-width="2.5" fill="none"/>
+    <path d="M592 328 Q598 360 578 366 Q556 368 556 346 L556 328 Z" fill="#e0b090"/>
+    <path d="M588 342 H558 M586 354 H558" stroke-width="2.5" fill="none"/>
+    <!-- pescoço com corrente -->
+    <path d="M466 176 L494 176 L496 208 Q480 216 464 208 Z" fill="#cf9a78"/>
+    <path d="M464 200 Q480 214 496 200" stroke="#bbb" stroke-width="3" fill="none"/>
+    <!-- cabeça -->
+    <path d="M450 140 Q448 108 480 104 Q512 108 510 140 L508 166 Q504 190 480 194 Q456 190 452 166 Z" fill="#e0b090"/>
+    <path d="M452 140 Q440 138 442 154 Q444 166 454 166 M508 140 Q520 138 518 154 Q516 166 506 166" fill="#cf9a78"/>
+    <!-- lados rapados -->
+    <path d="M452 140 Q450 116 466 108 L462 136 Z M508 140 Q510 116 494 108 L498 136 Z" fill="#7a5a48" opacity=".6"/>
+    <!-- crista moicana -->
+    <path d="M462 112 L452 62 L472 90 L476 30 L490 86 L508 44 L504 96 L526 76 L500 118 Z" fill="#e8243a"/>
+    <path d="M476 40 L482 86 M506 54 L500 98" stroke="#ff7a8a" stroke-width="2.5" fill="none"/>
+    <!-- piercings -->
+    <circle cx="447" cy="160" r="3" fill="none" stroke="#d8d8e0" stroke-width="2"/>
+    <circle cx="447" cy="150" r="3" fill="none" stroke="#d8d8e0" stroke-width="2"/>
+  </g>
+  <g stroke="#120c18" stroke-linecap="round" fill="none">
+    <path d="M458 136 L474 144 M486 144 L502 136" stroke-width="4"/>
+    <path d="M462 152 Q467 148 472 152 M488 152 Q493 148 498 152" stroke-width="3"/>
+    <circle cx="467" cy="152" r="1.8" fill="#111" stroke="none"/>
+    <circle cx="493" cy="152" r="1.8" fill="#111" stroke="none"/>
+    <path d="M480 152 L476 168 L484 168" stroke-width="2.5" stroke="#9a5a3a"/>
+    <path d="M466 178 L474 182 H488 L496 176" stroke-width="3"/>
+    <path d="M472 180 V184 M480 182 V186 M488 182 V186" stroke-width="1.5" stroke="#fff"/>
+    <circle cx="490" cy="176" r="2.5" stroke="#d8d8e0" stroke-width="1.8"/>
+  </g>
+  </g>
+</svg>
