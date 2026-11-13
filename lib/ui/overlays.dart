@@ -16,7 +16,7 @@ class TitleOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _Illustrated(
-      image: 'assets/images/lanchonete.jpg',
+      image: 'assets/images/titulo.jpg',
       shade: const Color(0xCC05050F),
       child: Center(
         child: SingleChildScrollView(

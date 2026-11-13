@@ -15,7 +15,7 @@ Jogo de pancadaria 2D para Android, feito com Flutter + Flame. Personagens e his
 | `assets/images/paris.jpg` | **Clara**, heroína de ação: casaco de cabedal vermelho, rabo de cavalo | Jogável; nível 3 (Paris à noite) |
 | `assets/images/lanchonete.jpg` | **Big Tyk**, chefão motoqueiro: careca, barba, colete, tatuagens | Chefe final; nível 4 (lanchonete da Rota 66) |
 
-As ilustrações aparecem no ecrã de escolha do lutador e nas páginas de história.
+As ilustrações aparecem no ecrã de escolha do lutador (fundo: `titulo.jpg`, o grupo todo) e nas páginas de história.
 
 ### Sprites em combate
 As folhas de sprites estão em `assets/images/sprites/` (um atlas PNG transparente por personagem) e as
