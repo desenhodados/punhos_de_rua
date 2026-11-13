@@ -12,6 +12,9 @@ class FighterPalette {
     required this.hairStyle,
     required this.accent,
     this.outfit = Outfit.tee,
+    this.inner,
+    this.tattoo,
+    this.slim = false,
   });
 
   final Color shirt;
@@ -21,15 +24,41 @@ class FighterPalette {
   final HairStyle hairStyle;
   final Color accent;
   final Outfit outfit;
+
+  /// Camisola por baixo do casaco ou do colete.
+  final Color? inner;
+
+  /// Cor das tatuagens nos braços (só aparecem com braços nus).
+  final Color? tattoo;
+
+  /// Silhueta mais estreita (heroína).
+  final bool slim;
+
+  bool get bareArms => outfit == Outfit.vest || outfit == Outfit.punkVest || outfit == Outfit.bikerVest;
+  bool get longSleeves => outfit == Outfit.leather || outfit == Outfit.bomber;
 }
 
 abstract final class Palettes {
-  static const hero = FighterPalette(shirt: Color(0xFF1E6FD9), pants: Color(0xFF2B2B55), hair: Color(0xFF3B2412), skin: Color(0xFFF0C090), hairStyle: HairStyle.headband, accent: Color(0xFFE22222));
-  static const grunt = FighterPalette(shirt: Color(0xFFB03A2E), pants: Color(0xFF3A2A2A), hair: Color(0xFF222222), skin: Color(0xFFE0A070), hairStyle: HairStyle.cap, accent: Color(0xFF111111), outfit: Outfit.vest);
-  static const thug = FighterPalette(shirt: Color(0xFF2E8B57), pants: Color(0xFF1D3B2A), hair: Color(0xFFE8C34A), skin: Color(0xFFD49A6A), hairStyle: HairStyle.mohawk, accent: Color(0xFFE8C34A), outfit: Outfit.jacket);
-  static const knifer = FighterPalette(shirt: Color(0xFF2A4A8A), pants: Color(0xFF1A1A22), hair: Color(0xFFAA5522), skin: Color(0xFFD49A6A), hairStyle: HairStyle.cap, accent: Color(0xFFFF8A3D), outfit: Outfit.jacket);
-  static const boss = FighterPalette(shirt: Color(0xFF6A1B9A), pants: Color(0xFF2A1038), hair: Color(0xFF111111), skin: Color(0xFFC98A5A), hairStyle: HairStyle.bald, accent: Color(0xFFE8C34A), outfit: Outfit.coat);
-  static const viper = FighterPalette(shirt: Color(0xFF146B5A), pants: Color(0xFF10241F), hair: Color(0xFFE8E8F0), skin: Color(0xFFC98A5A), hairStyle: HairStyle.mohawk, accent: Color(0xFF7CFFC4), outfit: Outfit.coat);
+  /// Jack: lutador urbano dos EUA (loiro, casaco de cabedal castanho, ganga).
+  static const jack = FighterPalette(shirt: Color(0xFF6E3E1E), pants: Color(0xFF3C64A8), hair: Color(0xFFF2C94C), skin: Color(0xFFE4A576), hairStyle: HairStyle.feathered, accent: Color(0xFFD9C27A), outfit: Outfit.leather, inner: Color(0xFFF4F2F8));
+
+  /// Clara: heroína de ação (casaco de cabedal vermelho, ganga, rabo de cavalo).
+  static const clara = FighterPalette(shirt: Color(0xFF8E2424), pants: Color(0xFF3C64A8), hair: Color(0xFF6A3A1E), skin: Color(0xFFF0C4A0), hairStyle: HairStyle.ponytail, accent: Color(0xFFC89A5A), outfit: Outfit.leather, inner: Color(0xFF6E1A1A), slim: true);
+
+  /// Arruaceiro de boné e camisola.
+  static const grunt = FighterPalette(shirt: Color(0xFF5E6B4A), pants: Color(0xFF2B3550), hair: Color(0xFF222222), skin: Color(0xFFE0A070), hairStyle: HairStyle.cap, accent: Color(0xFF111111));
+
+  /// Punk britânico: crista azul, colete de ganga com tachas, calças pretas rasgadas.
+  static const thug = FighterPalette(shirt: Color(0xFF2F4A72), pants: Color(0xFF26262E), hair: Color(0xFF2A7AE8), skin: Color(0xFFE0B090), hairStyle: HairStyle.mohawk, accent: Color(0xFFD8D8E0), outfit: Outfit.punkVest, inner: Color(0xFF1A1A20), tattoo: Color(0xFF2A4A7A));
+
+  /// Rufia de cabedal com navalha.
+  static const knifer = FighterPalette(shirt: Color(0xFF2A2630), pants: Color(0xFF1A1A22), hair: Color(0xFF3A2414), skin: Color(0xFFD49A6A), hairStyle: HairStyle.cap, accent: Color(0xFFFF8A3D), outfit: Outfit.leather, inner: Color(0xFFB03A2E));
+
+  /// Chefão motoqueiro: careca, bandana, barba, óculos escuros, colete e tatuagens.
+  static const boss = FighterPalette(shirt: Color(0xFF1D1A22), pants: Color(0xFF34445E), hair: Color(0xFF5A3A24), skin: Color(0xFFD08A5E), hairStyle: HairStyle.biker, accent: Color(0xFFC8202A), outfit: Outfit.bikerVest, inner: Color(0xFFC07A50), tattoo: Color(0xFF1A3A6A));
+
+  /// Víbora: chefe dos punks (crista verde, colete preto com tachas).
+  static const viper = FighterPalette(shirt: Color(0xFF151418), pants: Color(0xFF1E5A34), hair: Color(0xFF7CFF5A), skin: Color(0xFFE0B090), hairStyle: HairStyle.mohawk, accent: Color(0xFFE0E0EA), outfit: Outfit.punkVest, inner: Color(0xFFC8202A), tattoo: Color(0xFF2A1A4A));
 }
 
 /// Desenho vetorial das personagens (pés na origem, viradas à direita):
@@ -57,6 +86,28 @@ abstract final class FighterPainter {
     }
   }
 
+  /// Sombra suave no chão (encolhe quando o lutador salta).
+  static void drawShadow(Canvas c, double scale, double height) {
+    final shadowR = 13 * scale * (1 - math.min(height, 60) / 120);
+    c.save();
+    c.scale(1, .28);
+    _fill.shader = Gradient.radial(Offset.zero, shadowR, const [Color(0x99000000), Color(0x00000000)]);
+    c.drawCircle(Offset.zero, shadowR, _fill);
+    _fill.shader = null;
+    c.restore();
+  }
+
+  /// Taco ou faca na mão em ([hx], [hy]).
+  static void drawWeapon(Canvas c, Weapon weapon, double hx, double hy) {
+    if (weapon == Weapon.knife) {
+      _limb(c, [Offset(hx + 1, hy + 1), Offset(hx + 10, hy - 5)], 2.4, const Color(0xFFD8DDE8));
+      _limb(c, [Offset(hx - 1, hy + 2), Offset(hx + 2, hy)], 3.4, const Color(0xFF2A2A33), shine: false);
+    } else {
+      _limb(c, [Offset(hx - 1, hy + 3), Offset(hx + 8, hy - 15)], 3.6, const Color(0xFFA8743A));
+      _limb(c, [Offset(hx - 1, hy + 3), Offset(hx + 1.2, hy - 1.5)], 3.7, const Color(0xFF222222), shine: false);
+    }
+  }
+
   static void paint(
     Canvas c, {
     required FighterPalette palette,
@@ -72,14 +123,7 @@ abstract final class FighterPainter {
   }) {
     final p = palette;
 
-    // sombra suave
-    final shadowR = 13 * scale * (1 - math.min(height, 60) / 120);
-    c.save();
-    c.scale(1, .28);
-    _fill.shader = Gradient.radial(Offset.zero, shadowR, const [Color(0x99000000), Color(0x00000000)]);
-    c.drawCircle(Offset.zero, shadowR, _fill);
-    _fill.shader = null;
-    c.restore();
+    drawShadow(c, scale, height);
 
     if (flash) {
       c.saveLayer(null, Paint()..colorFilter = const ColorFilter.mode(Color(0xB3FFFFFF), BlendMode.srcATop));
@@ -130,38 +174,84 @@ abstract final class FighterPainter {
     }
 
     void arm(Offset s, Offset e, Offset h, {bool back = false}) {
-      final sleeve = p.outfit != Outfit.vest ? p.shirt : p.skin;
-      _limb(c, [s, e], 5, back ? _dark(sleeve, .25) : sleeve);
-      _limb(c, [e, h], 4.2, back ? _dark(p.skin, .2) : p.skin);
+      final sleeve = p.bareArms ? p.skin : p.shirt;
+      final big = p.outfit == Outfit.bikerVest ? 1.2 : 0.0;
+      _limb(c, [s, e], 5 + big, back ? _dark(sleeve, .25) : sleeve);
+      _limb(c, [e, h], 4.2 + big, back ? _dark(p.skin, .2) : p.skin);
+      if (p.longSleeves) {
+        final cuff = Offset.lerp(e, h, .62)!;
+        _limb(c, [e, cuff], 4.9, back ? _dark(p.shirt, .25) : p.shirt);
+        if (p.outfit == Outfit.bomber) {
+          _limb(c, [Offset.lerp(e, h, .5)!, cuff], 5, const Color(0xFF2B2B2B), shine: false);
+        }
+      }
+      final tat = p.tattoo;
+      if (p.bareArms && tat != null) {
+        final m = Offset.lerp(s, e, .55)!;
+        c.drawPath(
+          Path()
+            ..moveTo(m.dx - 1.4, m.dy - 1)
+            ..lineTo(m.dx + .2, m.dy + .2)
+            ..lineTo(m.dx - 1, m.dy + 1.4)
+            ..lineTo(m.dx + 1.2, m.dy + 2.2),
+          _stroke..strokeWidth = .8..color = back ? _dark(tat, .3) : tat,
+        );
+      }
     }
 
     void torso() {
+      final tw = p.slim ? 5.6 : (p.outfit == Outfit.bikerVest ? 7.6 : 6.5);
+      final bw = p.slim ? 4.5 : (p.outfit == Outfit.bikerVest ? 6.2 : 5.2);
       _fill.color = p.skin;
       c.drawRect(const Rect.fromLTWH(-1, -33, 4, 4), _fill);
       final path = Path()
-        ..moveTo(-6.5, -30)
-        ..lineTo(6.5, -30)
-        ..lineTo(5.2, -16.5)
-        ..lineTo(-5.2, -16.5)
+        ..moveTo(-tw, -30)
+        ..lineTo(tw, -30)
+        ..lineTo(bw, -16.5)
+        ..lineTo(-bw, -16.5)
         ..close();
-      _fill.color = p.outfit == Outfit.vest ? p.skin : p.shirt;
+      final inner = p.inner ?? p.skin;
+      final open = p.bareArms; // colete aberto: vê-se o que está por baixo
+      _fill.color = p.outfit == Outfit.vest ? p.skin : (open ? inner : p.shirt);
       c.drawPath(path, _fill);
-      if (p.outfit == Outfit.vest) {
+      if (open) {
         _fill.color = p.shirt;
         c.drawPath(
             Path()
-              ..moveTo(-6.5, -30)
+              ..moveTo(-tw, -30)
               ..lineTo(-1.5, -30)
               ..lineTo(-.5, -16.5)
-              ..lineTo(-5.2, -16.5)
+              ..lineTo(-bw, -16.5)
               ..close(),
             _fill);
         c.drawPath(
             Path()
-              ..moveTo(6.5, -30)
+              ..moveTo(tw, -30)
               ..lineTo(1.5, -30)
               ..lineTo(.5, -16.5)
-              ..lineTo(5.2, -16.5)
+              ..lineTo(bw, -16.5)
+              ..close(),
+            _fill);
+      } else if (p.longSleeves) {
+        // casaco aberto com a t-shirt/top à vista
+        if (p.outfit == Outfit.bomber) {
+          _fill.color = p.accent;
+          c.drawPath(
+              Path()
+                ..moveTo(-2.6, -30)
+                ..lineTo(3.6, -30)
+                ..lineTo(3.2, -18)
+                ..lineTo(-2.2, -18)
+                ..close(),
+              _fill);
+        }
+        _fill.color = inner;
+        c.drawPath(
+            Path()
+              ..moveTo(-1.6, -30)
+              ..lineTo(2.6, -30)
+              ..lineTo(2.2, -18)
+              ..lineTo(-1.2, -18)
               ..close(),
             _fill);
       }
@@ -169,17 +259,39 @@ abstract final class FighterPainter {
       c.drawPath(path, _fill);
       _fill.shader = null;
       c.drawPath(path, _stroke..strokeWidth = 1.2..color = _ol);
-      if (p.outfit == Outfit.jacket) {
-        c.drawLine(const Offset(4.2, -29.5), const Offset(3.6, -17.5), _stroke..strokeWidth = 1.4..color = p.accent);
-      } else if (p.outfit == Outfit.coat) {
-        c.drawLine(const Offset(-2, -30), const Offset(1.5, -20), _stroke..strokeWidth = 1.4..color = p.accent);
-        c.drawLine(const Offset(3, -30), const Offset(1.5, -20), _stroke..strokeWidth = 1.4..color = p.accent);
+      switch (p.outfit) {
+        case Outfit.jacket:
+          c.drawLine(const Offset(4.2, -29.5), const Offset(3.6, -17.5), _stroke..strokeWidth = 1.4..color = p.accent);
+        case Outfit.coat:
+          c.drawLine(const Offset(-2, -30), const Offset(1.5, -20), _stroke..strokeWidth = 1.4..color = p.accent);
+          c.drawLine(const Offset(3, -30), const Offset(1.5, -20), _stroke..strokeWidth = 1.4..color = p.accent);
+        case Outfit.leather:
+          // golas e fecho prateado
+          c.drawLine(const Offset(-1.6, -30), const Offset(-.4, -25), _stroke..strokeWidth = 1.3..color = _light(p.shirt, .25));
+          c.drawLine(const Offset(2.6, -30), const Offset(3.4, -25), _stroke..strokeWidth = 1.3..color = _light(p.shirt, .25));
+          c.drawLine(const Offset(3.6, -24), const Offset(3.3, -18.5), _stroke..strokeWidth = .7..color = const Color(0xFFB8B8C8));
+        case Outfit.bomber:
+          // gola canelada
+          c.drawLine(const Offset(-3, -30.2), const Offset(4, -30.2), _stroke..strokeWidth = 1.6..color = const Color(0xFF2B2B2B));
+        case Outfit.punkVest:
+          // tachas nos ombros
+          _fill.color = p.accent;
+          for (final x in [-5.0, -3.2, 3.4, 5.2]) {
+            c.drawCircle(Offset(x, -30.4), .75, _fill);
+          }
+        case Outfit.bikerVest:
+          // emblema do clube
+          _fill.color = p.accent;
+          c.drawCircle(const Offset(-4.2, -24), 1.5, _fill);
+        case Outfit.tee:
+        case Outfit.vest:
+          break;
       }
       _fill.color = const Color(0xFF17131C);
-      c.drawRect(const Rect.fromLTWH(-5.4, -18.2, 10.8, 2.6), _fill);
-      _fill.color = p.accent;
+      c.drawRect(Rect.fromLTWH(-bw - .2, -18.2, bw * 2 + .4, 2.6), _fill);
+      _fill.color = p.outfit == Outfit.bomber ? const Color(0xFF3A3A3A) : p.accent;
       c.drawRect(const Rect.fromLTWH(-.2, -18.2, 3.2, 2.6), _fill);
-      c.drawLine(const Offset(5.4, -28.5), const Offset(4.6, -19), _stroke..strokeWidth = 1..color = const Color(0x40FFFFFF));
+      c.drawLine(Offset(tw - 1.1, -28.5), Offset(bw - .6, -19), _stroke..strokeWidth = 1..color = const Color(0x40FFFFFF));
     }
 
     void head() {
@@ -211,9 +323,66 @@ abstract final class FighterPainter {
             c.drawPath(m, _stroke..strokeWidth = 1..color = _ol);
           }
         case HairStyle.bald:
+        case HairStyle.biker:
           {
             c.drawArc(Rect.fromCircle(center: o, radius: 5.2), .2, math.pi - .5, true, _fill);
             c.drawArc(Rect.fromCircle(center: o, radius: 4), math.pi * 1.15, .6, false, _stroke..strokeWidth = 1..color = const Color(0x66FFFFFF));
+            if (p.hairStyle == HairStyle.biker) {
+              // bandana
+              _fill.color = p.accent;
+              c.drawArc(Rect.fromCircle(center: o, radius: 5.7), math.pi * 1.02, math.pi * .96, true, _fill);
+              c.drawArc(Rect.fromCircle(center: o, radius: 5.7), math.pi * 1.02, math.pi * .96, false, _stroke..strokeWidth = 1..color = _ol);
+              final fl = math.sin(time * 7) * 1;
+              _limb(c, [const Offset(-3.8, -38.6), Offset(-7, -37.6 + fl), Offset(-9, -35.6 + fl)], 1.5, p.accent, shine: false);
+              _fill.color = const Color(0xFFF4F2F8);
+              c.drawCircle(const Offset(1, -40.4), .45, _fill);
+              c.drawCircle(const Offset(4, -40), .45, _fill);
+            }
+          }
+        case HairStyle.feathered:
+          {
+            // cabelo loiro dos anos 80: volume em cima e nuca comprida
+            final r = Rect.fromCircle(center: const Offset(1.5, -36.6), radius: 6.1);
+            c.drawArc(r, math.pi * .85, math.pi * 1.25, true, _fill);
+            final mullet = Path()
+              ..moveTo(-5.6, -38)
+              ..lineTo(-5, -30.4)
+              ..lineTo(-2.6, -31.2)
+              ..lineTo(-1.8, -36)
+              ..close();
+            c.drawPath(mullet, _fill);
+            c.drawPath(mullet, _stroke..strokeWidth = 1..color = _ol);
+            final top = Path()
+              ..moveTo(-5.2, -37.5)
+              ..quadraticBezierTo(-3.6, -45.4, 3, -43.8)
+              ..quadraticBezierTo(8.6, -42.8, 8.2, -37.6)
+              ..quadraticBezierTo(5.4, -40.6, 2, -39.8)
+              ..quadraticBezierTo(-1.2, -41, -3.4, -37.6)
+              ..close();
+            c.drawPath(top, _fill);
+            c.drawPath(top, _stroke..strokeWidth = 1..color = _ol);
+            c.drawArc(r, math.pi * .85, math.pi * .4, false, _stroke..strokeWidth = 1..color = _ol);
+            c.drawLine(const Offset(-1.5, -42.6), const Offset(3.5, -42.4), _stroke..strokeWidth = .8..color = _light(p.hair, .6));
+          }
+        case HairStyle.ponytail:
+          {
+            // rabo de cavalo que balança
+            final sw2 = math.sin(time * 5 + phase) * 1.4;
+            _limb(c, [const Offset(-3.4, -40), Offset(-8.4, -39 + sw2 * .5), Offset(-10.2, -33.4 + sw2)], 3.2, p.hair);
+            final r = Rect.fromCircle(center: const Offset(1.5, -36.6), radius: 5.9);
+            c.drawArc(r, math.pi * .9, math.pi * 1.2, true, _fill);
+            c.drawArc(r, math.pi * .9, math.pi * 1.2, false, _stroke..strokeWidth = 1..color = _ol);
+            // franja lateral
+            c.drawPath(
+                Path()
+                  ..moveTo(1, -42)
+                  ..quadraticBezierTo(7.5, -42, 7.6, -37.4)
+                  ..quadraticBezierTo(4.5, -40, 1, -39.4)
+                  ..close(),
+                _fill);
+            _fill.color = p.accent;
+            c.drawCircle(const Offset(-3.8, -39.8), 1.1, _fill);
+            c.drawLine(const Offset(-1, -42.4), const Offset(3, -42.6), _stroke..strokeWidth = .8..color = _light(p.hair, .45));
           }
         case HairStyle.headband:
         case HairStyle.cap:
@@ -231,7 +400,8 @@ abstract final class FighterPainter {
           }
       }
 
-      if (p.hairStyle == HairStyle.bald) {
+      final baldish = p.hairStyle == HairStyle.bald || p.hairStyle == HairStyle.biker;
+      if (baldish) {
         _fill.color = const Color(0xFF0C0C12);
         c.drawRRect(RRect.fromRectAndRadius(const Rect.fromLTWH(2.2, -38, 5.6, 2.4), const Radius.circular(1)), _fill);
         c.drawLine(const Offset(3, -37.6), const Offset(5, -37.6), _stroke..strokeWidth = .6..color = const Color(0x99FFFFFF));
@@ -252,12 +422,21 @@ abstract final class FighterPainter {
         _fill.color = const Color(0xFF5A1010);
         c.drawOval(Rect.fromCenter(center: const Offset(4.4, -33.2), width: 2.2, height: 1.8), _fill);
       } else {
-        c.drawLine(const Offset(3.2, -33.2), const Offset(5.6, -33.2), _stroke..strokeWidth = .8..color = _dark(p.skin, .5));
+        c.drawLine(const Offset(3.2, -33.2), const Offset(5.6, -33.2), _stroke..strokeWidth = (p.slim ? 1.1 : .8)..color = p.slim ? const Color(0xFFB8323A) : _dark(p.skin, .5));
       }
-      if (p.hairStyle == HairStyle.bald) {
+      if (baldish) {
         // barba
         _fill.color = p.hair;
         c.drawArc(Rect.fromCircle(center: o, radius: 5.5), .15, math.pi - .35, true, _fill);
+        if (p.hairStyle == HairStyle.biker) {
+          final beard = Path()
+            ..moveTo(-1, -34.5)
+            ..quadraticBezierTo(1.5, -27, 7.2, -30.6)
+            ..lineTo(7, -34)
+            ..close();
+          c.drawPath(beard, _fill);
+          c.drawPath(beard, _stroke..strokeWidth = .9..color = _ol);
+        }
         _fill.color = _dark(p.skin, .18);
         c.drawCircle(const Offset(6.6, -35), .8, _fill);
       }
@@ -298,16 +477,11 @@ abstract final class FighterPainter {
         hy = kick ? -31 : -17;
         arm(const Offset(1, -28), Offset((1 + hx) / 2 + 1, (-28 + hy) / 2), Offset(hx, hy));
       }
-      _fill.color = p.outfit == Outfit.vest ? p.skin : p.shirt;
-      c.drawCircle(const Offset(1, -28.5), 3.8, _fill);
-      c.drawCircle(const Offset(1, -28.5), 3.8, _stroke..strokeWidth = 1..color = _ol);
-      if (weapon == Weapon.knife) {
-        _limb(c, [Offset(hx + 1, hy + 1), Offset(hx + 10, hy - 5)], 2.4, const Color(0xFFD8DDE8));
-        _limb(c, [Offset(hx - 1, hy + 2), Offset(hx + 2, hy)], 3.4, const Color(0xFF2A2A33), shine: false);
-      } else if (weapon == Weapon.bat) {
-        _limb(c, [Offset(hx - 1, hy + 3), Offset(hx + 8, hy - 15)], 3.6, const Color(0xFFA8743A));
-        _limb(c, [Offset(hx - 1, hy + 3), Offset(hx + 1.2, hy - 1.5)], 3.7, const Color(0xFF222222), shine: false);
-      }
+      final shoulder = p.slim ? 3.3 : 3.8;
+      _fill.color = p.bareArms ? p.skin : p.shirt;
+      c.drawCircle(const Offset(1, -28.5), shoulder, _fill);
+      c.drawCircle(const Offset(1, -28.5), shoulder, _stroke..strokeWidth = 1..color = _ol);
+      if (weapon != null) drawWeapon(c, weapon, hx, hy);
     });
 
     c.restore();

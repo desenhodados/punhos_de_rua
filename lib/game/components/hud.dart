@@ -6,6 +6,7 @@ import 'package:flame/extensions.dart';
 import 'package:flame/text.dart';
 
 import '../game_enums.dart';
+import 'enemy.dart';
 import '../punhos_game.dart';
 
 /// Vida, vidas, pontos, arma, barra do chefe e seta "IR".

@@ -8,10 +8,77 @@ import '../game_enums.dart';
 import 'enemy.dart';
 import 'fighter.dart';
 import 'fighter_painter.dart';
+import 'sprite_data.dart';
+
+extension PlayerHeroInfo on PlayerHero {
+  String get displayName => name.toUpperCase();
+
+  String get name => switch (this) {
+        PlayerHero.jack => 'Jack',
+        PlayerHero.leo => 'Leo',
+        PlayerHero.clara => 'Clara',
+        PlayerHero.punk => 'Spike',
+      };
+
+  String get tagline => switch (this) {
+        PlayerHero.jack => 'Lutador de Brooklyn',
+        PlayerHero.leo => 'Brigão da Rota 66',
+        PlayerHero.clara => 'A fúria de Paris',
+        PlayerHero.punk => 'Punk de Londres',
+      };
+
+  FighterPalette get palette => switch (this) {
+        PlayerHero.jack || PlayerHero.leo => Palettes.jack,
+        PlayerHero.clara => Palettes.clara,
+        PlayerHero.punk => Palettes.thug,
+      };
+
+  /// Sprites em pixel art (o Jack ainda usa o desenho vetorial).
+  SpriteSheetData? get sheet => switch (this) {
+        PlayerHero.jack => null,
+        PlayerHero.leo => SpriteSheets.leo,
+        PlayerHero.clara => SpriteSheets.clara,
+        PlayerHero.punk => SpriteSheets.punk,
+      };
+
+  /// Retrato para o ecrã de escolha (sprite parada), se houver.
+  String? get portrait => switch (this) {
+        PlayerHero.jack => null,
+        PlayerHero.leo => 'assets/images/sprites/leo_idle.png',
+        PlayerHero.clara => null,
+        PlayerHero.punk => 'assets/images/sprites/punk_idle.png',
+      };
+
+  /// Posição horizontal do lutador na ilustração (-1 esquerda, 1 direita).
+  double get imageFocusX => switch (this) {
+        PlayerHero.jack => .04,
+        PlayerHero.leo => -.2,
+        PlayerHero.clara => -.05,
+        PlayerHero.punk => -.02,
+      };
+
+  /// Ilustração do lutador (ver assets/images).
+  String get image => switch (this) {
+        PlayerHero.jack => 'assets/images/nova_iorque.jpg',
+        PlayerHero.leo => 'assets/images/lanchonete.jpg',
+        PlayerHero.clara => 'assets/images/paris.jpg',
+        PlayerHero.punk => 'assets/images/londres.jpg',
+      };
+}
 
 class Player extends Fighter {
-  Player() : super(maxHp: 12, palette: Palettes.hero) {
+  Player() : super(maxHp: 12, palette: Palettes.jack) {
     position = Vector2(50, 140);
+  }
+
+  PlayerHero hero = PlayerHero.jack;
+
+  @override
+  SpriteSheetData? get sheet => hero.sheet;
+
+  void chooseHero(PlayerHero h) {
+    hero = h;
+    palette = h.palette;
   }
 
   int lives = 3;
