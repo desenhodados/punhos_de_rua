@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/services.dart';
 
 import '../core/game_config.dart';
 import 'audio/audio_manager.dart';
@@ -47,9 +48,13 @@ class PunhosGame extends FlameGame {
 
   LevelData get level => Levels.all[levelIndex];
 
+  /// Imagens de cenário encontradas em assets/images/cenarios/ (chave do cache de imagens).
+  final Map<Scenery, SceneryImages> sceneryImages = {};
+
   @override
   Future<void> onLoad() async {
     await images.loadAll([for (final s in SpriteSheets.all) s.file]);
+    await _loadSceneryImages();
     await add(root);
     root.add(Background());
     root.add(stage);
@@ -58,6 +63,32 @@ class PunhosGame extends FlameGame {
     stage.add(player);
     stage.add(sparks);
     _loadLevel(0);
+  }
+
+  /// Procura cenários em pixel art; os que faltarem são desenhados por código.
+  Future<void> _loadSceneryImages() async {
+    Set<String> assets;
+    try {
+      final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+      assets = manifest.listAssets().toSet();
+    } catch (_) {
+      return;
+    }
+    String? find(String name) {
+      for (final ext in const ['png', 'jpg', 'jpeg', 'webp']) {
+        final path = 'assets/images/cenarios/$name.$ext';
+        if (assets.contains(path)) return path.substring('assets/images/'.length);
+      }
+      return null;
+    }
+
+    for (final scene in Scenery.values) {
+      final main = find(scene.fileName);
+      if (main == null) continue;
+      final far = find('${scene.fileName}_fundo');
+      await images.loadAll([main, if (far != null) far]);
+      sceneryImages[scene] = SceneryImages(main, far);
+    }
   }
 
   @override

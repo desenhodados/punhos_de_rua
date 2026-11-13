@@ -1,0 +1,21 @@
+Cenarios em pixel art (opcionais)
+=================================
+
+Ponha aqui uma imagem por nivel, sem personagens nem barras de pontuacao.
+Se a imagem nao existir, o jogo desenha o cenario por codigo.
+
+Nomes (PNG ou JPG):
+  nova_iorque   nivel 1 (metro de Brooklyn)
+  londres       nivel 2 (beco de Londres a chuva)
+  paris         nivel 3 (Paris a noite)
+  lanchonete    nivel 4 (lanchonete da Rota 66)
+
+Camada principal (obrigatoria): <nome>.png
+  - Ocupa a altura toda do ecra e desliza com os lutadores.
+  - Ideal: 4 a 5 vezes mais larga do que alta (ex.: 2400x480). Se for mais curta, repete-se.
+  - Os 62% de cima sao fachadas e ceu; os 38% de baixo sao passeio e estrada,
+    onde os lutadores andam (os pes ficam entre 62% e 96% da altura).
+
+Camada de fundo (opcional): <nome>_fundo.png
+  - Ceu e predios ao longe; desliza mais devagar (efeito de profundidade).
+  - So aparece se a camada principal tiver o ceu transparente (PNG).

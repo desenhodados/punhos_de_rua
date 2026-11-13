@@ -13,7 +13,15 @@ const _neon = [Color(0xFFFF3D81), Color(0xFF3DF0FF), Color(0xFF8AFF3D), Color(0x
 
 Color _mix(Color a, Color b, double t) => Color.lerp(a, b, t)!;
 
-/// Cenário em camadas com paralaxe, névoa, néon e luz. Tudo desenhado por código.
+/// Imagens de um cenário: camada principal e, opcionalmente, um fundo mais lento.
+class SceneryImages {
+  const SceneryImages(this.main, this.far);
+  final String main;
+  final String? far;
+}
+
+/// Cenário em camadas com paralaxe. Usa as imagens de assets/images/cenarios/
+/// quando existem; caso contrário desenha névoa, néon e luz por código.
 class Background extends PositionComponent with HasGameReference<PunhosGame> {
   Background() : super(priority: -100);
 
@@ -23,6 +31,15 @@ class Background extends PositionComponent with HasGameReference<PunhosGame> {
     final w = game.viewWidth;
     final cam = game.cameraX;
     final t = game.frame / 60;
+
+    final imgs = game.sceneryImages[lv.scene];
+    if (imgs != null) {
+      canvas.drawRect(Rect.fromLTWH(0, 0, w, GameConfig.viewHeight), Paint()..color = lv.sky.first);
+      final far = imgs.far;
+      if (far != null) _imageLayer(canvas, game.images.fromCache(far), w, cam * .3);
+      _imageLayer(canvas, game.images.fromCache(imgs.main), w, cam);
+      return;
+    }
 
     switch (lv.scene) {
       case Scenery.newYork:
@@ -69,6 +86,19 @@ class Background extends PositionComponent with HasGameReference<PunhosGame> {
     for (var i = -1; i <= w / bw + 1; i++) {
       final n = n0 + i;
       draw(n, n * bw - cam * speed);
+    }
+  }
+
+  static final Paint _pixels = Paint()..filterQuality = FilterQuality.none;
+
+  /// Desenha uma imagem com a altura do ecrã, repetida na horizontal e deslocada [offset].
+  void _imageLayer(Canvas canvas, Image img, double w, double offset) {
+    final k = GameConfig.viewHeight / img.height;
+    final tw = img.width * k;
+    final src = Rect.fromLTWH(0, 0, img.width.toDouble(), img.height.toDouble());
+    for (var x = -(offset % tw); x < w; x += tw) {
+      // +0.5 evita uma linha fina entre repetições
+      canvas.drawImageRect(img, src, Rect.fromLTWH(x, 0, tw + .5, GameConfig.viewHeight), _pixels);
     }
   }
 

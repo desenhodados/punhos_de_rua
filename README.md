@@ -32,6 +32,12 @@ posições de cada pose em `lib/game/components/sprite_data.dart`; `sprite_paint
 Poses: parado, andar (2–4 quadros), soco, pontapé, levar pancada, no chão. O Jack e os inimigos sem
 folha de sprites (arruaceiro de boné e rufia da navalha) continuam com o desenho vetorial de `fighter_painter.dart`.
 
+### Cenários em pixel art
+Ponha uma imagem por nível em `assets/images/cenarios/` (`nova_iorque`, `londres`, `paris`, `lanchonete`, em PNG ou JPG)
+e o jogo usa-a em vez do cenário desenhado por código. Os pés dos lutadores ficam entre 62% e 96% da altura da
+imagem; o tamanho ideal é 4 a 5 vezes mais larga do que alta (ex.: 2400×480). Uma camada `<nome>_fundo` opcional
+desliza mais devagar por trás. Detalhes em `assets/images/cenarios/LEIA-ME.txt`.
+
 ## Controlos (ecrã tátil)
 - Direcional: mover. SOCO: combo de 3 golpes (o 3.º derruba). SALTO + SOCO: pontapé no ar.
 - ▼ + SOCO: rasteira. AGARRAR junto a um inimigo: SOCO = joelhada, AGARRAR outra vez = atirar.
@@ -48,6 +54,8 @@ folha de sprites (arruaceiro de boné e rufia da navalha) continuam com o desenh
 - `assets/images/` ilustrações (PNG) e respetivas fontes SVG.
 
 ## Próximos passos
-1. Folhas de sprites para o Jack e para os inimigos que ainda são vetoriais.
-2. Sons e música com `flame_audio` em `audio_manager.dart`.
-3. Mais inimigos, armas e níveis em `level_data.dart`.
+1. Imagens de cenário em pixel art para os 4 níveis (`assets/images/cenarios/`).
+2. Folhas de sprites para o Jack e para os inimigos que ainda são vetoriais.
+3. Sons e música com `flame_audio` em `audio_manager.dart`.
+4. Experimentar num telemóvel Android.
+5. Mais inimigos, armas e níveis em `level_data.dart`.
