@@ -10,16 +10,14 @@ Jogo de pancadaria 2D para Android, feito com Flutter + Flame. Personagens e his
 ## Personagens e cenários
 | Ilustração | Personagem | Onde aparece |
 |---|---|---|
-| `assets/images/nova_iorque.png` | **Jack**, lutador urbano dos EUA: loiro, casaco de cabedal, ganga | Jogável; nível 1 (entrada do metro de Nova Iorque) |
-| `assets/images/londres.png` | **Punks** britânicos: crista, colete de ganga com tachas, calças escocesas (e a chefe **Víbora**) | Inimigos; nível 2 (ruas de Londres) |
-| `assets/images/europa_noite.png` | **Rita**, heroína de ação: casaco bomber, rabo de cavalo | Jogável; nível 3 (cidade europeia à noite) |
-| `assets/images/lanchonete.png` | **Touro**, chefão motoqueiro: careca, bandana, barba, tatuagens | Chefe final; nível 4 (lanchonete retro dos EUA) |
+| `assets/images/nova_iorque.jpg` | **Jack**, lutador urbano dos EUA: loiro, casaco de cabedal, ganga rasgada | Jogável; nível 1 (metro de Brooklyn) |
+| `assets/images/londres.jpg` | **Punks** britânicos: crista, colete de ganga com tachas (e a chefe **Víbora**) | Inimigos; nível 2 (becos de Londres à chuva) |
+| `assets/images/paris.jpg` | **Clara**, heroína de ação: casaco de cabedal vermelho, rabo de cavalo | Jogável; nível 3 (Paris à noite) |
+| `assets/images/lanchonete.jpg` | **Touro**, chefão motoqueiro: careca, barba, colete, tatuagens | Chefe final; nível 4 (lanchonete da Rota 66) |
 
-As ilustrações aparecem no ecrã de escolha do lutador e nas páginas de história. Dentro do jogo, as
-personagens e cenários são desenhados por código com o mesmo visual (`fighter_painter.dart`, `background.dart`).
-
-As fontes das ilustrações são SVG em `assets/images/src/`. Depois de editar um SVG, gerar os PNG com
-`node tool/render_images.js` (precisa do pacote `playwright` com Chromium).
+As ilustrações em pixel art aparecem no ecrã de escolha do lutador e nas páginas de história. Dentro do jogo,
+as personagens e cenários são desenhados por código com as mesmas cores (`fighter_painter.dart`, `background.dart`).
+Para ter pixel art também durante o combate é preciso trocar esse desenho por spritesheets animadas (ver "Próximos passos").
 
 ## Controlos (ecrã tátil)
 - Direcional: mover. SOCO: combo de 3 golpes (o 3.º derruba). SALTO + SOCO: pontapé no ar.

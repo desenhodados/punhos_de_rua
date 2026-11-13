@@ -39,23 +39,23 @@ class FighterPalette {
 }
 
 abstract final class Palettes {
-  /// Jack: lutador urbano dos EUA (loiro, casaco de cabedal, ganga).
-  static const jack = FighterPalette(shirt: Color(0xFF1D1A22), pants: Color(0xFF3C64A8), hair: Color(0xFFF2C94C), skin: Color(0xFFE4A576), hairStyle: HairStyle.feathered, accent: Color(0xFFD9C27A), outfit: Outfit.leather, inner: Color(0xFFF4F2F8));
+  /// Jack: lutador urbano dos EUA (loiro, casaco de cabedal castanho, ganga).
+  static const jack = FighterPalette(shirt: Color(0xFF6E3E1E), pants: Color(0xFF3C64A8), hair: Color(0xFFF2C94C), skin: Color(0xFFE4A576), hairStyle: HairStyle.feathered, accent: Color(0xFFD9C27A), outfit: Outfit.leather, inner: Color(0xFFF4F2F8));
 
-  /// Rita: heroína de ação (casaco bomber, rabo de cavalo).
-  static const rita = FighterPalette(shirt: Color(0xFF5A6630), pants: Color(0xFF26263A), hair: Color(0xFFB0481F), skin: Color(0xFFF0C4A0), hairStyle: HairStyle.ponytail, accent: Color(0xFFF08A24), outfit: Outfit.bomber, inner: Color(0xFFC0392B), slim: true);
+  /// Clara: heroína de ação (casaco de cabedal vermelho, ganga, rabo de cavalo).
+  static const clara = FighterPalette(shirt: Color(0xFF8E2424), pants: Color(0xFF3C64A8), hair: Color(0xFF6A3A1E), skin: Color(0xFFF0C4A0), hairStyle: HairStyle.ponytail, accent: Color(0xFFC89A5A), outfit: Outfit.leather, inner: Color(0xFF6E1A1A), slim: true);
 
   /// Arruaceiro de boné e camisola.
   static const grunt = FighterPalette(shirt: Color(0xFF5E6B4A), pants: Color(0xFF2B3550), hair: Color(0xFF222222), skin: Color(0xFFE0A070), hairStyle: HairStyle.cap, accent: Color(0xFF111111));
 
-  /// Punk britânico: crista, colete de ganga com tachas, calças escocesas.
-  static const thug = FighterPalette(shirt: Color(0xFF2F4A72), pants: Color(0xFFB0202A), hair: Color(0xFFE8243A), skin: Color(0xFFE0B090), hairStyle: HairStyle.mohawk, accent: Color(0xFFD8D8E0), outfit: Outfit.punkVest, inner: Color(0xFFF4F2F8), tattoo: Color(0xFF2A4A7A));
+  /// Punk britânico: crista azul, colete de ganga com tachas, calças pretas rasgadas.
+  static const thug = FighterPalette(shirt: Color(0xFF2F4A72), pants: Color(0xFF26262E), hair: Color(0xFF2A7AE8), skin: Color(0xFFE0B090), hairStyle: HairStyle.mohawk, accent: Color(0xFFD8D8E0), outfit: Outfit.punkVest, inner: Color(0xFF1A1A20), tattoo: Color(0xFF2A4A7A));
 
   /// Rufia de cabedal com navalha.
   static const knifer = FighterPalette(shirt: Color(0xFF2A2630), pants: Color(0xFF1A1A22), hair: Color(0xFF3A2414), skin: Color(0xFFD49A6A), hairStyle: HairStyle.cap, accent: Color(0xFFFF8A3D), outfit: Outfit.leather, inner: Color(0xFFB03A2E));
 
   /// Chefão motoqueiro: careca, bandana, barba, óculos escuros, colete e tatuagens.
-  static const boss = FighterPalette(shirt: Color(0xFF1D1A22), pants: Color(0xFF34445E), hair: Color(0xFF5A3A24), skin: Color(0xFFD08A5E), hairStyle: HairStyle.biker, accent: Color(0xFFC8202A), outfit: Outfit.bikerVest, inner: Color(0xFF222028), tattoo: Color(0xFF1A3A6A));
+  static const boss = FighterPalette(shirt: Color(0xFF1D1A22), pants: Color(0xFF34445E), hair: Color(0xFF5A3A24), skin: Color(0xFFD08A5E), hairStyle: HairStyle.biker, accent: Color(0xFFC8202A), outfit: Outfit.bikerVest, inner: Color(0xFFC07A50), tattoo: Color(0xFF1A3A6A));
 
   /// Víbora: chefe dos punks (crista verde, colete preto com tachas).
   static const viper = FighterPalette(shirt: Color(0xFF151418), pants: Color(0xFF1E5A34), hair: Color(0xFF7CFF5A), skin: Color(0xFFE0B090), hairStyle: HairStyle.mohawk, accent: Color(0xFFE0E0EA), outfit: Outfit.punkVest, inner: Color(0xFFC8202A), tattoo: Color(0xFF2A1A4A));

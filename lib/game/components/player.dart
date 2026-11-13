@@ -12,31 +12,31 @@ import 'fighter_painter.dart';
 extension PlayerHeroInfo on PlayerHero {
   String get displayName => switch (this) {
         PlayerHero.jack => 'JACK',
-        PlayerHero.rita => 'RITA',
+        PlayerHero.clara => 'CLARA',
       };
 
   String get name => switch (this) {
         PlayerHero.jack => 'Jack',
-        PlayerHero.rita => 'Rita',
+        PlayerHero.clara => 'Clara',
       };
 
   String get tagline => switch (this) {
-        PlayerHero.jack => 'Lutador de Nova Iorque',
-        PlayerHero.rita => 'Heroína de ação europeia',
+        PlayerHero.jack => 'Lutador de Brooklyn',
+        PlayerHero.clara => 'A fúria de Paris',
       };
 
   FighterPalette get palette => switch (this) {
         PlayerHero.jack => Palettes.jack,
-        PlayerHero.rita => Palettes.rita,
+        PlayerHero.clara => Palettes.clara,
       };
 
   /// Posição horizontal do lutador na ilustração (-1 esquerda, 1 direita).
-  double get imageFocusX => this == PlayerHero.jack ? .3 : 0;
+  double get imageFocusX => this == PlayerHero.jack ? .04 : -.05;
 
   /// Ilustração do lutador (ver assets/images).
   String get image => switch (this) {
-        PlayerHero.jack => 'assets/images/nova_iorque.png',
-        PlayerHero.rita => 'assets/images/europa_noite.png',
+        PlayerHero.jack => 'assets/images/nova_iorque.jpg',
+        PlayerHero.clara => 'assets/images/paris.jpg',
       };
 }
 

@@ -8,7 +8,7 @@ import '../game/punhos_game.dart';
 const _gold = Color(0xFFFFD966);
 const _mono = 'monospace';
 
-/// Ecrã inicial: escolher entre o Jack e a Rita.
+/// Ecrã inicial: escolher entre o Jack e a Clara.
 class TitleOverlay extends StatelessWidget {
   const TitleOverlay({super.key, required this.game});
   final PunhosGame game;
@@ -16,7 +16,7 @@ class TitleOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _Illustrated(
-      image: 'assets/images/lanchonete.png',
+      image: 'assets/images/lanchonete.jpg',
       shade: const Color(0xCC05050F),
       child: Center(
         child: SingleChildScrollView(
@@ -62,7 +62,7 @@ class _HeroCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: 150, width: 140, child: Image.asset(hero.image, fit: BoxFit.cover, alignment: Alignment(hero.imageFocusX, 0))),
+            SizedBox(height: 150, width: 140, child: Image.asset(hero.image, fit: BoxFit.cover, alignment: Alignment(hero.imageFocusX, 0), filterQuality: FilterQuality.none)),
             Container(
               width: double.infinity,
               color: const Color(0xEE120C18),
@@ -161,7 +161,7 @@ class _Illustrated extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         const ColoredBox(color: Color(0xFF05050F)),
-        Image.asset(image, fit: BoxFit.cover),
+        Image.asset(image, fit: BoxFit.cover, filterQuality: FilterQuality.none),
         ColoredBox(color: shade),
         child,
       ],
@@ -250,7 +250,7 @@ class _TextScreen extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(image, fit: BoxFit.cover, alignment: Alignment(focusX, 0)),
+                  Image.asset(image, fit: BoxFit.cover, alignment: Alignment(focusX, 0), filterQuality: FilterQuality.none),
                   const DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(colors: [Color(0xFF05050F), Color(0x0005050F)], stops: [0, .25]),

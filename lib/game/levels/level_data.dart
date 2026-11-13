@@ -54,8 +54,8 @@ abstract final class Levels {
   static const List<LevelData> all = [
     LevelData(
       scene: Scenery.newYork,
-      image: 'assets/images/nova_iorque.png',
-      imageFocusX: .3,
+      image: 'assets/images/nova_iorque.jpg',
+      imageFocusX: .04,
       sky: [Color(0xFF0B0A26), Color(0xFF3A1F5C), Color(0xFFD0607A)],
       far: Color(0xFF1D1640),
       mid: Color(0xFF4A2230),
@@ -70,8 +70,8 @@ abstract final class Levels {
     ),
     LevelData(
       scene: Scenery.london,
-      image: 'assets/images/londres.png',
-      imageFocusX: -.13,
+      image: 'assets/images/londres.jpg',
+      imageFocusX: -.02,
       sky: [Color(0xFF1A1A24), Color(0xFF3E3A4E), Color(0xFF8A7A6E)],
       far: Color(0xFF2A2836),
       mid: Color(0xFF6A2E26),
@@ -85,7 +85,8 @@ abstract final class Levels {
     ),
     LevelData(
       scene: Scenery.europeNight,
-      image: 'assets/images/europa_noite.png',
+      image: 'assets/images/paris.jpg',
+      imageFocusX: -.05,
       sky: [Color(0xFF050A1E), Color(0xFF14285A), Color(0xFF3F6AA8)],
       far: Color(0xFF22336A),
       mid: Color(0xFF3A2A36),
@@ -94,12 +95,13 @@ abstract final class Levels {
       waves: [[_k, _t, _k], [_t, _k, _t, _k], [_k, _t, _k, _g, _t], [_v, _k, _t]],
       pickups: [PickupSpawn(Weapon.bat, 380, 150), PickupSpawn(Weapon.knife, 800, 150)],
       storyPages: [
-        ['A Víbora fugiu para o', 'continente. Numa noite fria,', 'à beira-rio, quer vingança.', '', 'NÍVEL 3: CIDADE VELHA'],
+        ['A Víbora fugiu para Paris.', 'Numa noite fria, nas ruelas', 'de Montmartre, quer vingança.', '', 'NÍVEL 3: PARIS'],
       ],
     ),
     LevelData(
       scene: Scenery.diner,
-      image: 'assets/images/lanchonete.png',
+      image: 'assets/images/lanchonete.jpg',
+      imageFocusX: -.35,
       sky: [Color(0xFF2A1250), Color(0xFFC2456A), Color(0xFFFFB35A)],
       far: Color(0xFF6A2A4A),
       mid: Color(0xFF1A1028),

@@ -14,4 +14,4 @@ enum Outfit { tee, vest, jacket, coat, leather, bomber, punkVest, bikerVest }
 enum Scenery { newYork, london, europeNight, diner }
 
 /// Lutadores que o jogador pode escolher.
-enum PlayerHero { jack, rita }
+enum PlayerHero { jack, clara }
